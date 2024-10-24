@@ -7,7 +7,7 @@ client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
-audio_file = open("../audio/1.mp3", "rb")
+audio_file = open("../audio/output.wav", "rb")
 transcription = client.audio.transcriptions.create(
   model="whisper-1", 
   file=audio_file
