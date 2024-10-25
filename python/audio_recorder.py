@@ -2,7 +2,7 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import os
 
-save_directory = r"C:\Users\Artem\OneDrive\Робочий стіл\Head_project\audio"  # Change this to your desired location
+save_directory = r"C:\Users\Artem\OneDrive\Робочий стіл\Head_project\audio"
 filename = "output.wav"
 file_path = os.path.join(save_directory, filename)
 
