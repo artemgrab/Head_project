@@ -1,9 +1,7 @@
 import os
-
-import openai
 from dotenv import load_dotenv
 from openai import OpenAI
-import os
+
 
 load_dotenv()
 client = OpenAI(
@@ -16,14 +14,8 @@ class Transcription:
         self.audiofile = open(audiofile, "rb")
 
     def write_speech(self):
-        result = client.audio.transcriptions.create(model="whisper-1",file=self.audiofile)
-        return result
+        result = client.audio.transcriptions.create(model="whisper-1", file=self.audiofile)
+        return result.text
 
-# audio_file = open("../audio/output.wav", "rb")
-# transcription = client.audio.transcriptions.create(
-#   model="whisper-1",
-#   file=audio_file
-# )
-# print(transcription.text)
 
 
