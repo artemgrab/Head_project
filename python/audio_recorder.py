@@ -10,7 +10,7 @@ file_path = os.path.join(save_directory, filename)
 class VoiceRecorder:
     def __init__(self):
         self.fs = 11025
-        self.recordtime = 5
+        self.recordtime = 10
         self.channels = 1
 
     def record_voice(self):

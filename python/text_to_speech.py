@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
-import wave
+import pyglet
 
 load_dotenv()
 client = OpenAI(
@@ -20,8 +20,14 @@ class AudioResponse:
             voice="echo",
             input=f"{self.text}",
         )
-        audio_path = "C:/Users/Artem/OneDrive/Робочий стіл/Head_project/audio/output1.wav"
+        audio_path = "C:/Users/Artem/OneDrive/Робочий стіл/Head_project/audio/output1.mp3"
         response.stream_to_file(audio_path)
+
+
+
+        # os.system(r'C:/Users/Artem/OneDrive/Робочий стіл/Head_project/audio/output1.mp3')
+        pyglet.media.load("C:/Users/Artem/OneDrive/Робочий стіл/Head_project/audio/output1.mp3").play()
+        pyglet.app.run()
 
         #wave.open(audio_path, "rb")
 
