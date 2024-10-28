@@ -4,15 +4,28 @@ from chatgpt_response import Response
 from text_to_speech import AudioResponse
 
 samples = VoiceRecorder()
-samples.record_voice()
+# samples.record_voice()
+#
+# transcript = Transcription("../audio/output.wav")
+# transcribed = transcript.write_speech()
+# print(transcribed)
+#
+# response = Response(transcribed)
+# r = response.get_response()
+# print(r)
+#
+# audio = AudioResponse(r)
+# audio.get_audio()
 
-transcript = Transcription("../audio/output.wav")
-# print(transcript.write_speech())
-
-response = Response(transcript.write_speech())
-print(response.get_response())
-
-audio = AudioResponse(response.get_response())
-audio.get_audio()
-
-
+# make infinite loop of audio recording
+#
+while True:
+    samples.record_voice()
+    transcript = Transcription("../audio/output.wav")
+    transcribed = transcript.write_speech()
+    print(transcribed)
+    response = Response(transcribed)
+    r = response.get_response()
+    print(r)
+    audio = AudioResponse(r)
+    audio.get_audio()

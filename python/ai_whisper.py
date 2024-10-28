@@ -14,7 +14,7 @@ class Transcription:
         self.audiofile = open(audiofile, "rb")
 
     def write_speech(self):
-        result = client.audio.transcriptions.create(model="whisper-1", file=self.audiofile)
+        result = client.audio.transcriptions.create(model="whisper-1", file=self.audiofile, language="uk")
         return result.text
 
 
