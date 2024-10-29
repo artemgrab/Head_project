@@ -1,5 +1,5 @@
-from python.audio_recorder import VoiceRecorder
-from python.ai_whisper import Transcription
+from audio_recorder import VoiceRecorder
+from ai_whisper import Transcription
 from chatgpt_response import Response
 from text_to_speech import AudioResponse
 
