@@ -3,7 +3,12 @@ from scipy.io.wavfile import write
 import os
 import numpy as np
 
-save_directory = r"C:\Users\Oleksyi\Desktop\Head_project\audio"
+cur_dir = os.path.dirname(__file__)
+save_directory = os.path.join(cur_dir, "..", "audio")
+
+if not os.path.exists(save_directory):
+    os.makedirs(save_directory)
+
 filename = "output.wav"
 file_path = os.path.join(save_directory, filename)
 
