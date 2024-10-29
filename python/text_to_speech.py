@@ -10,6 +10,12 @@ client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
+cur_dir = os.path.dirname(__file__)
+save_directory = os.path.join(cur_dir, "..", "audio")
+
+if not os.path.exists(save_directory):
+    os.makedirs(save_directory)
+
 
 class AudioResponse:
     def __init__(self, text):
@@ -24,7 +30,7 @@ class AudioResponse:
                 input=f"{self.text}",
                 response_format="wav"
         ) as response:
-            audio_path = "C:/Users/Oleksyi/Desktop/Head_project/audio/output1.wav"
+            audio_path = f"{save_directory}/output1.wav"
             response.stream_to_file(audio_path)
 
         # play audio file: read with wave, play with sounddevice
