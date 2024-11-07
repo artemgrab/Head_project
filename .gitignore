@@ -1,3 +1,5 @@
 /source/
 /audio/
 .env
+venv
+__pycache__
