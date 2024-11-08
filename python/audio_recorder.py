@@ -17,6 +17,7 @@ class VoiceRecorder:
     def __init__(self):
         self.fs = 11025
         self.recordtime = 15
+        self.recordtime = 5
         self.recordtime1 = 1
         self.channels = 1
 
@@ -38,9 +39,6 @@ class VoiceRecorder:
             if res is None:
                 res = myrecording
             else:
-                # res = res + myrecording
-                # join arrays res and myrecording
-
                 res = np.concatenate((res, myrecording), axis=None)
         print('ended recording')
 

@@ -4,6 +4,7 @@ from openai import OpenAI
 import wave
 import sounddevice as sd
 import numpy as np
+from scipy.signal import butter, lfilter
 
 load_dotenv()
 client = OpenAI(
@@ -22,6 +23,27 @@ class AudioResponse:
         self.text = text
         # self.path = path
 
+    def bandstop_filter(self, signal, fs, lowcut, highcut, order=2):
+        nyquist = 0.5 * fs
+        low = lowcut / nyquist
+        high = highcut / nyquist
+        b, a = butter(order, [low, high], btype='bandstop')
+        return lfilter(b, a, signal)
+
+    def process(self, buffer, fs):
+        signal = np.frombuffer(buffer, dtype='int16')
+        # Frequencies for bandstop filters (in Hz) with narrow gaps
+        bandstop_frequencies = [500, 1000, 2000, 3000, 4000]
+        q_factor = 2  # Adjust this for more or less filtering effect
+
+        # Apply each bandstop filter
+        for freq in bandstop_frequencies:
+            lowcut = freq - (freq / q_factor)
+            highcut = freq + (freq / q_factor)
+            signal = self.bandstop_filter(signal, fs, lowcut, highcut)
+
+        return signal.astype('int16')
+
     def get_audio(self):
         # play audio file
         with client.with_streaming_response.audio.speech.create(
@@ -39,11 +61,14 @@ class AudioResponse:
             print("Audio file opened")
             fs = audio_file.getframerate()
             # read all frames
-            buffer = audio_file.readframes(-1)
-            # convert binary data to integers
-            signal = np.frombuffer(buffer, dtype='int16')
-            # play audio
-            print("Playing audio")
-            sd.play(signal, fs)
-            # wait until audio is done playing
-            sd.wait()
+            buffer = audio_file.readframes(4 * fs)
+            signal = self.process(buffer, fs)
+            while buffer:
+                # convert binary data to integers
+                # play audio
+                print("Playing audio")
+                sd.play(signal, fs)
+                # wait until audio is done playing
+                buffer = audio_file.readframes(4 * fs)
+                signal = self.process(buffer, fs)
+                sd.wait()
