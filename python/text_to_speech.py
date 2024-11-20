@@ -34,7 +34,7 @@ class AudioResponse:
         signal = np.frombuffer(buffer, dtype='int16')
         # Frequencies for bandstop filters (in Hz) with narrow gaps
         bandstop_frequencies = [500, 1000, 2000, 3000, 4000]
-        q_factor = 2 # Adjust this for more or less filtering effect
+        q_factor = 2  # Adjust this for more or less filtering effect
 
         # Apply each bandstop filter
         for freq in bandstop_frequencies:
@@ -43,7 +43,6 @@ class AudioResponse:
             signal = self.bandstop_filter(signal, fs, lowcut, highcut)
 
         return signal.astype('int16')
-
 
     def get_audio(self):
         # play audio file
@@ -62,14 +61,14 @@ class AudioResponse:
             print("Audio file opened")
             fs = audio_file.getframerate()
             # read all frames
-            buffer = audio_file.readframes(4*fs)
+            buffer = audio_file.readframes(4 * fs)
             signal = self.process(buffer, fs)
             while buffer:
-              # convert binary data to integers
-              # play audio
-              print("Playing audio")
-              sd.play(signal, fs)
-              # wait until audio is done playing
-              buffer = audio_file.readframes(4*fs)
-              signal = self.process(buffer, fs)
-              sd.wait()
+                # convert binary data to integers
+                # play audio
+                print("Playing audio")
+                sd.play(signal, fs)
+                # wait until audio is done playing
+                buffer = audio_file.readframes(4 * fs)
+                signal = self.process(buffer, fs)
+                sd.wait()
