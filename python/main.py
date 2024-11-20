@@ -5,6 +5,7 @@ import time
 from audio_recorder import VoiceRecorder
 from ai_whisper import Transcription
 from chatgpt_response import Response
+from eyes import BenderEyes
 from text_to_speech import AudioResponse
 
 from camera import BenderCamera
@@ -25,6 +26,8 @@ def audio_loop():
             print(r)
             audio = AudioResponse(r)
             audio.get_audio()
+        else:
+            print("No audio input")
 
 def camera_loop():
     camera = BenderCamera()
@@ -32,6 +35,19 @@ def camera_loop():
     while True:
         camera.take_picture()
         time.sleep(5)
+
+
+def eyes_loop():
+    eyes = BenderEyes()
+    while True:
+        eyes.move(5)
+        time.sleep(1)
+        eyes.move(7.5)
+        time.sleep(1)
+        eyes.move(10)
+        time.sleep(1)
+        eyes.move(7.5)
+        time.sleep(1)
 
 
 def main():
@@ -42,6 +58,10 @@ def main():
     # new thread for camera loop
     camera_thread = threading.Thread(target=camera_loop)
     camera_thread.start()
+
+    # eyes thread
+    eyes_thread = threading.Thread(target=eyes_loop)
+    eyes_thread.start()
 
     # wait for both threads to finish
     audio_thread.join()
