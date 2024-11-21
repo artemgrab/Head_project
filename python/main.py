@@ -15,6 +15,8 @@ from camera import BenderCamera
 def audio_loop():
     samples = VoiceRecorder()
 
+    history = []
+
     while True:
         samples.record_voice()
         # if file doesn't exist, skip
@@ -22,13 +24,28 @@ def audio_loop():
             transcript = Transcription("../audio/output.wav")
             transcribed = transcript.write_speech()
             print(transcribed)
-            response = Response(transcribed)
+            response = Response(transcribed, history)
             r = response.get_response()
             print(r)
             audio = AudioResponse(r)
             audio.get_audio()
+
+            history.append(
+                {
+                    "role": "user",
+                    "content": transcribed
+                }
+            )
+            history.append({
+                "role": "assistant",
+                "content": r
+            })
+
+            if len(history) > 10:
+                del history[0]
         else:
             print("No audio input")
+
 
 def camera_loop():
     camera = BenderCamera()
