@@ -1,6 +1,7 @@
 import os
 import threading
 import time
+from random import randint, choice
 
 from audio_recorder import VoiceRecorder
 from ai_whisper import Transcription
@@ -39,15 +40,10 @@ def camera_loop():
 
 def eyes_loop():
     eyes = BenderEyes()
+    positions = [12, 15, 19]
     while True:
-        eyes.move(12)
-        time.sleep(1)
-        eyes.move(15)
-        time.sleep(1)
-        eyes.move(19)
-        time.sleep(1)
-        eyes.move(15)
-        time.sleep(1)
+        eyes.move(choice(positions))
+        time.sleep(randint(1, 5))
 
 
 def main():
