@@ -17,10 +17,7 @@ class BenderEyes:
         self.pwm_servo.start(self.duty_cycle)
 
     def move(self, val):
-        # val should be between 5 and 10
-        self.pwm_servo.start(val)
-        # self.pwm_servo.ChangeDutyCycle(val)
-        self.pwm_servo.stop()
+        self.pwm_servo.ChangeDutyCycle(val)
 
     def cleanup(self):
         self.pwm_servo.stop()
