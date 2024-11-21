@@ -43,7 +43,9 @@ def eyes_loop():
     positions = [10, 15, 20]
     while True:
         eyes.move(choice(positions))
-        time.sleep(randint(1, 5))
+        time.sleep(0.5)
+        eyes.cleanup()
+        time.sleep(randint(1, 4))
 
 
 def main():
