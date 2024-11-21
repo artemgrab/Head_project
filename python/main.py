@@ -42,11 +42,11 @@ def eyes_loop():
     while True:
         eyes.move(5)
         time.sleep(1)
-        eyes.move(7.5)
+        eyes.move(9)
         time.sleep(1)
-        eyes.move(10)
+        eyes.move(15)
         time.sleep(1)
-        eyes.move(7.5)
+        eyes.move(19)
         time.sleep(1)
 
 
