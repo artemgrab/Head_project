@@ -40,13 +40,13 @@ def camera_loop():
 def eyes_loop():
     eyes = BenderEyes()
     while True:
-        eyes.move(5)
-        time.sleep(1)
-        eyes.move(9)
+        eyes.move(12)
         time.sleep(1)
         eyes.move(15)
         time.sleep(1)
         eyes.move(19)
+        time.sleep(1)
+        eyes.move(15)
         time.sleep(1)
 
 
