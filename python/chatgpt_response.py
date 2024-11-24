@@ -9,10 +9,11 @@ client = OpenAI(
 
 
 class Response:
-    def __init__(self, text):
+    def __init__(self, text, history):
         self.completion = None
         self.client = client
         self.text = text
+        self.history = history
 
     def get_response(self):
         self.completion = client.chat.completions.create(
@@ -23,10 +24,11 @@ class Response:
                             "злодій-рецидивіст (вірніше, клептоман), кухар (хоча, зважаючи на відсутність відчуття "
                             "смаку, його їжа в переважній більшості випадків щонайменше неїстівна, або навіть "
                             "небезпечна для життя)."},
+                # ... history
                 {
                     "role": "user",
                     "content": f'{self.text}'
-                }
+                },
             ]
         )
         

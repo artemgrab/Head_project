@@ -17,12 +17,16 @@ class VoiceRecorder:
     def __init__(self):
         self.fs = 11025
         self.recordtime = 15
-        self.recordtime = 5
         self.recordtime1 = 1
         self.channels = 1
 
     def record_voice(self):
         print('start recording')
+
+        # remove file if it exists
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
         res = None
         for i in range(self.recordtime):
             myrecording = sd.rec(int(self.recordtime1 * self.fs), samplerate=self.fs, channels=self.channels)
@@ -41,5 +45,9 @@ class VoiceRecorder:
             else:
                 res = np.concatenate((res, myrecording), axis=None)
         print('ended recording')
+
+        if average_amplitude < 0.1:
+            # не записувати файл якщо не було звуку
+            return
 
         write(file_path, self.fs, res)
