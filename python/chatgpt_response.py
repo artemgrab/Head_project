@@ -35,31 +35,31 @@ class Response:
     def get_response(self):
             if ('базінга' in self.text.lower() and self.censoring == True):
                 self.censoring = False
+                self.history = []
                 print('Цензура вимкнена')
             elif('базінга' in self.text.lower() and self.censoring == False):
                 self.censoring = True
+                self.history = []
                 print('Цензура увімкнена')
-                
-            messages = [
-                {"role": "system",
-                 "content": f'{self.instructions}'}]
-                # ... history
-                # {
-                #     "role": "user",
-                #     "content": f'{self.text}'
-                # },]
+            if(self.history == []):
+                self.history.append({"role": "system", "content": f'{self.instructions}'})
+            
     
             for question, answer in self.history[-10:]:
-                messages.append({ "role": "user", "content": question })
-                messages.append({ "role": "assistant", "content": answer }) 
+                history.append({ "role": "user", "content": question })
+                history.append({ "role": "assistant", "content": answer }) 
             # add the new question
-            messages.append({ "role": "user", "content": self.text })
+            self.history.append({ "role": "user", "content": self.text })
+            
             self.completion = client.chat.completions.create(
                 model="gpt-4o",
-                messages=messages,
+                messages=self.history,
             )
-    
-            return self.completion.choices[0].message.content
+            response = self.completion.choices[0].message.content
+            # add the new answer
+            self.history.append({ "role": "assistant", "content": response})
+            return response
+
 
 
 # import os
