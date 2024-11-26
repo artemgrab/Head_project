@@ -16,18 +16,29 @@ if (censoring==False):
                             "злодій-рецидивіст (вірніше, клептоман), кухар (хоча, зважаючи на відсутність відчуття "
                             "смаку, його їжа в переважній більшості випадків щонайменше неїстівна, або навіть "
                             "небезпечна для життя)."
+elif(censoring==True):
+    instructions = "Ти звичайний робот в школі, що допомагає учням у навчанні. Ти полюбляєш теплі та смішні жарти. Твоя мета допомагати та відповідати на запитання людей. Ти вмієш класно жартувати та зненацька розповідати цікаві факти."
 
 class Response:
-    def __init__(self, text, history, instructions):
+    def __init__(self, text, history, instructions, censoring):
         self.completion = None
         self.client = client
         self.text = text
         self.history = history
         self.instructions = instructions
+        self.censoring = censoring
         
-
+        
+        
+        
+    
     def get_response(self):
-            messages=[
+            if ('Бендер, активуй мозок' in self.text):
+                self.censoring = False
+            elif('Бендер, деактивуй мозок' in self.text):
+                self.censoring = True
+                
+            messages = [
                 {"role": "system",
                  "content": f'{self.instructions}'}
                 # ... history
@@ -35,7 +46,7 @@ class Response:
                 #     "role": "user",
                 #     "content": f'{self.text}'
                 # },]
-
+    
             for question, answer in self.history[-10:]:
                 messages.append({ "role": "user", "content": question })
                 messages.append({ "role": "assistant", "content": answer }) 
@@ -45,10 +56,8 @@ class Response:
                 model="gpt-4o",
                 messages=messages,
             )
-
-        return self.completion.choices[0].message.content
-
-
+    
+            return self.completion.choices[0].message.content
 
 
 
