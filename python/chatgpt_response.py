@@ -33,14 +33,16 @@ class Response:
         
     
     def get_response(self):
-            if ('Бендер, активуй мозок' in self.text):
+            if ('базінга' in self.text.lower() and self.censoring == True):
                 self.censoring = False
-            elif('Бендер, деактивуй мозок' in self.text):
+                print('Цензура вимкнена')
+            elif('базінга' in self.text.lower() and self.censoring == False):
                 self.censoring = True
+                print('Цензура увімкнена')
                 
             messages = [
                 {"role": "system",
-                 "content": f'{self.instructions}'}
+                 "content": f'{self.instructions}'}]
                 # ... history
                 # {
                 #     "role": "user",
@@ -58,7 +60,6 @@ class Response:
             )
     
             return self.completion.choices[0].message.content
-
 
 
 # import os
