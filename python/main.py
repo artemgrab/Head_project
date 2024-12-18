@@ -27,6 +27,8 @@ def audio_loop():
     samples = VoiceRecorder()
     wait_path = os.path.join(audio_directory, "wait.wav")
 
+    history = []
+
     while True:
         CURRENT_POSITION = POSITION_MIDDLE
         samples.record_voice()
@@ -40,15 +42,30 @@ def audio_loop():
 
             CURRENT_POSITION = POSITION_RIGHT
             os.system(f"aplay {wait_path}")
-            response = Response(transcribed)
+            response = Response(transcribed, history)
             r = response.get_response()
             print(r)
             CURRENT_POSITION = POSITION_MIDDLE
             os.system(f"aplay {wait_path}")
             audio = AudioResponse(r)
             audio.get_audio()
+
+            history.append(
+                {
+                    "role": "user",
+                    "content": transcribed
+                }
+            )
+            history.append({
+                "role": "assistant",
+                "content": r
+            })
+
+            if len(history) > 10:
+                del history[0]
         else:
             print("No audio input")
+
 
 def camera_loop():
     camera = BenderCamera()
