@@ -36,12 +36,12 @@ class Response:
                 "Ти вмієш класно жартувати та зненацька розповідати цікаві факти. Відповідаєш коротко, не більше одного речення."
             )
 
-        if ('топінамбур' in self.text.lower() and self.censoring == True):
+        if ('крижень' in self.text.lower() and self.censoring == True):
             self.censoring = False
             self.history.clear()
             print('Цензура вимкнена')
             os.system(f"aplay {bad_path}")
-        elif ('топінамбур' in self.text.lower() and self.censoring == False):
+        elif ('крижень' in self.text.lower() and self.censoring == False):
             self.censoring = True
             self.history.clear()
             print('Цензура увімкнена')
