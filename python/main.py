@@ -28,6 +28,7 @@ def audio_loop():
     wait_path = os.path.join(audio_directory, "wait.wav")
 
     history = []
+    censoring = False
 
     while True:
         CURRENT_POSITION = POSITION_MIDDLE
@@ -42,9 +43,11 @@ def audio_loop():
 
             CURRENT_POSITION = POSITION_RIGHT
             os.system(f"aplay {wait_path}")
-            response = Response(transcribed, history)
+            response = Response(transcribed, history, censoring)
+            censoring = response.censoring
             r = response.get_response()
             print(r)
+
             CURRENT_POSITION = POSITION_MIDDLE
             os.system(f"aplay {wait_path}")
             audio = AudioResponse(r)

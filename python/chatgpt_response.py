@@ -7,8 +7,6 @@ client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
-censoring = False
-
 cur_dir = os.path.dirname(__file__)
 audio_directory = os.path.join(cur_dir, "..", "audio")
 nice_path = os.path.join(audio_directory, "nice.wav")
@@ -16,7 +14,7 @@ bad_path = os.path.join(audio_directory, "bad.wav")
 
 
 class Response:
-    def __init__(self, text, history):
+    def __init__(self, text, history, censoring):
         self.completion = None
         self.client = client
         self.text = text
