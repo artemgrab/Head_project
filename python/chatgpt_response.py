@@ -26,12 +26,12 @@ class Response:
             self.censoring = False
             self.history.clear()
             print('Цензура вимкнена')
-            os.system(f"aplay {bad_path}")
+            os.system(f"aplay {nice_path}")
         elif ('крижень' in self.text.lower() and self.censoring == False):
             self.censoring = True
             self.history.clear()
             print('Цензура увімкнена')
-            os.system(f"aplay {nice_path}")
+            os.system(f"aplay {bad_path}")
 
         if not self.censoring:
             instructions = (
