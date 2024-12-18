@@ -22,6 +22,8 @@ class VoiceRecorder:
 
     def record_voice(self):
         print('start recording')
+        ready_path = os.path.join(save_directory, "ready.wav")
+        os.system(f"aplay {ready_path}")
 
         # remove file if it exists
         if os.path.exists(file_path):
@@ -35,8 +37,10 @@ class VoiceRecorder:
             if res is not None:
                 print(len(res))
                 average_amplitude = np.mean(np.abs(res))
+                std_amp = np.std(res)
                 average_amplitude1 = np.mean(np.abs(myrecording))
                 print("Середнє значення амплітуди:", average_amplitude, average_amplitude1)
+                print("std", std_amp)
                 if average_amplitude1 < average_amplitude / 3:
                     break
 
@@ -44,10 +48,12 @@ class VoiceRecorder:
                 res = myrecording
             else:
                 res = np.concatenate((res, myrecording), axis=None)
-        print('ended recording')
 
-        if average_amplitude < 0.1:
+        print(std_amp, average_amplitude)
+        if std_amp < 0.015 or average_amplitude < 0.03:
             # не записувати файл якщо не було звуку
+            print('empty recording')
             return
 
+        print('voice recorded')
         write(file_path, self.fs, res)
