@@ -28,7 +28,7 @@ def audio_loop():
     wait_path = os.path.join(audio_directory, "wait.wav")
 
     history = []
-    censoring = False
+    censoring = True
 
     while True:
         CURRENT_POSITION = POSITION_MIDDLE
