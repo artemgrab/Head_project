@@ -12,21 +12,44 @@ from text_to_speech import AudioResponse
 from camera import BenderCamera
 
 
+POSITION_LEFT = 5
+POSITION_MIDDLE = 7.5
+POSITION_RIGHT = 10
+
+CURRENT_POSITION = POSITION_MIDDLE
+
+cur_dir = os.path.dirname(__file__)
+audio_directory = os.path.join(cur_dir, "..", "audio")
+
+
 def audio_loop():
+    global CURRENT_POSITION
     samples = VoiceRecorder()
+    wait_path = os.path.join(audio_directory, "wait.wav")
 
     history = []
+    censoring = True
 
     while True:
+        CURRENT_POSITION = POSITION_MIDDLE
         samples.record_voice()
         # if file doesn't exist, skip
         if os.path.exists("../audio/output.wav"):
+            CURRENT_POSITION = POSITION_LEFT
+            os.system(f"aplay {wait_path}")
             transcript = Transcription("../audio/output.wav")
             transcribed = transcript.write_speech()
             print(transcribed)
-            response = Response(transcribed, history)
+
+            CURRENT_POSITION = POSITION_RIGHT
+            os.system(f"aplay {wait_path}")
+            response = Response(transcribed, history, censoring)
+            censoring = response.censoring
             r = response.get_response()
             print(r)
+
+            CURRENT_POSITION = POSITION_MIDDLE
+            os.system(f"aplay {wait_path}")
             audio = AudioResponse(r)
             audio.get_audio()
 
@@ -56,15 +79,14 @@ def camera_loop():
 
 
 def eyes_loop():
+    global CURRENT_POSITION
     eyes = BenderEyes()
-    positions = [5, 7.5, 10]
+    #positions = [5, 7.5, 10]
     while True:
-        p = choice(positions)
-        print(p)
-        eyes.move(p)
+        eyes.move(CURRENT_POSITION)
         time.sleep(0.5)
         eyes.move(0)
-        time.sleep(randint(1, 4))
+        time.sleep(1)
 
 
 def main():

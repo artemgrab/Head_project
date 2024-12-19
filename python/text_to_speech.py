@@ -50,11 +50,14 @@ class AudioResponse:
                 model="tts-1",
                 voice="echo",
                 input=f"{self.text}",
-                response_format="wav"
+                response_format="mp3"
         ) as response:
-            audio_path = f"{save_directory}/output1.wav"
+            audio_path = f"{save_directory}/output1.mp3"
             response.stream_to_file(audio_path)
 
+        os.system(f"ffplay -autoexit -hide_banner -loglevel fatal {audio_path}")
+
+        return
         # play audio file: read with wave, play with sounddevice
 
         with wave.open(audio_path, 'rb') as audio_file:
