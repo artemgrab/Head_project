@@ -26,12 +26,12 @@ class Response:
             self.censoring = False
             self.history.clear()
             print('Цензура вимкнена')
-            os.system(f"aplay {nice_path}")
+            os.system(f"aplay {bad_path}")
         elif ('крижень' in self.text.lower() and self.censoring == False):
             self.censoring = True
             self.history.clear()
             print('Цензура увімкнена')
-            os.system(f"aplay {bad_path}")
+            os.system(f"aplay {nice_path}")
 
         if not self.censoring:
             instructions = (
@@ -44,7 +44,10 @@ class Response:
             instructions = (
                 "Ти звичайний робот в школі, що допомагає учням у навчанні. Ти полюбляєш теплі та смішні жарти."
                 "Твоя мета допомагати та відповідати на запитання людей. "
-                "Ти вмієш класно жартувати та зненацька розповідати цікаві факти. Відповідаєш коротко, не більше одного речення."
+                "Ти вмієш класно жартувати та зненацька розповідати цікаві факти. "
+                "Відповідаєш коротко, не більше одного речення. "
+                "Без математичних формул, спеціальних символів та складних визначень."
+                "В кожному слові великою літерою познач ту яка має бути наголошена."
             )
 
         if len(self.history) == 0:
