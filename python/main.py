@@ -5,7 +5,7 @@ from random import randint, choice
 
 from audio_recorder import VoiceRecorder
 from ai_whisper import Transcription
-from chatgpt_response import Response
+from chatgpt_response import ResponseEngine
 from eyes import BenderEyes
 from text_to_speech import AudioResponse
 
@@ -43,7 +43,7 @@ def audio_loop():
 
             CURRENT_POSITION = POSITION_RIGHT
             os.system(f"aplay {wait_path}")
-            response = Response(transcribed, history, censoring)
+            response = ResponseEngine(transcribed, history, censoring)
             censoring = response.censoring
             r = response.get_response()
             print(r)
