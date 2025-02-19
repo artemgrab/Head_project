@@ -8,9 +8,8 @@ from ai_whisper import Transcription
 from chatgpt_response import ResponseEngine
 from eyes import BenderEyes
 from text_to_speech import AudioResponse
-
 from camera import BenderCamera
-
+from webui import web_server, get_audio_status
 
 POSITION_LEFT = 5
 POSITION_MIDDLE = 7.5
@@ -21,7 +20,6 @@ CURRENT_POSITION = POSITION_MIDDLE
 cur_dir = os.path.dirname(__file__)
 audio_directory = os.path.join(cur_dir, "..", "audio")
 
-
 def audio_loop():
     global CURRENT_POSITION
     samples = VoiceRecorder()
@@ -31,6 +29,11 @@ def audio_loop():
     censoring = True
 
     while True:
+        print("Audio Status:", get_audio_status())
+        if not get_audio_status():
+            time.sleep(1)
+            continue
+            
         CURRENT_POSITION = POSITION_MIDDLE
         samples.record_voice()
         # if file doesn't exist, skip
@@ -90,6 +93,10 @@ def eyes_loop():
 
 
 def main():
+    # new thread for web server
+    web_thread = threading.Thread(target=web_server)
+    web_thread.start()
+
     # new thread for audio loop
     audio_thread = threading.Thread(target=audio_loop)
     audio_thread.start()
@@ -105,6 +112,7 @@ def main():
     # wait for both threads to finish
     audio_thread.join()
     camera_thread.join()
+    eyes_thread.join()
 
 
 if __name__ == "__main__":

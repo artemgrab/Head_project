@@ -3,3 +3,4 @@ scipy
 numpy
 python-dotenv
 openai
+Flask
