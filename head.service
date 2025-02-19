@@ -1,0 +1,12 @@
+[Unit]
+Description=Head Project
+After=network-online.target
+
+[Service]
+Type=idle
+ExecStart=/home/meatbag/Head_project/start.sh
+User=meatbag
+WorkingDirectory=/home/meatbag/Head_project
+
+[Install]
+WantedBy=network-online.target
