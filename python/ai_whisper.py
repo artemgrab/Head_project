@@ -16,6 +16,3 @@ class Transcription:
     def write_speech(self):
         result = client.audio.transcriptions.create(model="whisper-1", file=self.audiofile, language="uk")
         return result.text
-
-
-

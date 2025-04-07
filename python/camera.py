@@ -1,4 +1,5 @@
 from picamzero import Camera
+from integration import on_camera_image
 
 
 class BenderCamera:
@@ -7,3 +8,4 @@ class BenderCamera:
 
     def take_picture(self, filename="image.jpg"):
         self.camera.take_photo(filename)
+        on_camera_image(filename)

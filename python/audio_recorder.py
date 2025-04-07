@@ -2,6 +2,8 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import os
 import numpy as np
+from integration import on_audio_recorder
+
 
 cur_dir = os.path.dirname(__file__)
 save_directory = os.path.join(cur_dir, "..", "audio")
@@ -57,3 +59,4 @@ class VoiceRecorder:
 
         print('voice recorded')
         write(file_path, self.fs, res)
+        on_audio_recorder(file_path)

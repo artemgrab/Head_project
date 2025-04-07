@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/normalize.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Бендер</title>
+</head>
+<body>
+    <header>
+        <div class="layout-container">
+            <nav>
+                <a href="{{url_for('index')}}"><img src="{{url_for('static', filename='img/logo.png')}}" alt="logo"></a>
+                <ul>
+                    <li><a href="{{url_for('edu')}}">Почати навчання</a></li>
+                    <li><a href="#">Інструкція</a></li>
+                    <li><a href="{{url_for('qa')}}">Q&A</a></li>
+                    <li><a href="#">Увійти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+  <div class="test-container">
+    <div class="button-wrapper">
+      <button id="scriptToggle" class="btn-switch">Увімкнути</button>
+    </div>
+  </div>
+
+    <script src="{{url_for('static', filename='JS/script.js')}}"></script>
+
+</body>
+</html>
