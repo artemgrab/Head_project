@@ -39,7 +39,7 @@ def toggle_script():
     global script_process
     if request.json.get('action') == 'start':
         if script_process is None:
-            script_process = subprocess.Popen(['venv/bin/python', 'python/main.py'])
+            script_process = subprocess.Popen(['../venv/bin/python', 'main.py'])
             return jsonify({'status': 'started'})
     elif request.json.get('action') == 'stop':
         if script_process is not None:

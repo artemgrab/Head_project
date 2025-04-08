@@ -7,3 +7,6 @@ __pycache__
 .idea
 python/image.jpg
 *.out
+
+audio_status.txt
+python/audio_status.txt
