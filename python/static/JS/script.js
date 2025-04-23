@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         lineWrapping: true
     });
 
-    // Load the function
     fetch('/get_function')
         .then(response => response.text())
         .then(code => {
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = editor.getValue();
         const lines = content.split('\n');
         
-        // Find the instructions line
         let instructionsLineNum = -1;
         let instructionsMatch = null;
         
@@ -63,12 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (instructionsLineNum !== -1 && instructionsMatch) {
-            // Calculate positions
             const lineText = lines[instructionsLineNum];
             const valueStart = lineText.indexOf(instructionsMatch[1]);
             const beforeValue = lineText.substring(0, valueStart);
-            
-            // Make everything read-only except instructions value
+
             editor.markText(
                 {line: 0, ch: 0},
                 {line: instructionsLineNum, ch: beforeValue.length},
@@ -83,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Save changes
+
     document.getElementById('saveButton').addEventListener('click', function() {
         const code = editor.getValue();
         fetch('/save_code', {

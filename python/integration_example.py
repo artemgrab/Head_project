@@ -3,7 +3,6 @@ def on_question_received(question, history):
     promt=f"""
     
     """
-    return Response(question, history, promt)
 
 def on_camera_image(image):
     #Додайте свій код обробки зображення тут

@@ -61,7 +61,6 @@ def save_code():
         with open('python/integration.py', 'r', encoding='utf-8') as file:
             content = file.read()
             
-        # Find and replace the function
         import re
         pattern = rf'(def\s+{function_name}\s*\([^)]*\):(?:(?!\ndef\s+).)*)'
         updated_content = re.sub(pattern, code.strip(), content, flags=re.DOTALL)
@@ -78,7 +77,6 @@ def get_function():
     try:
         with open('python/integration.py', 'r', encoding='utf-8') as file:
             content = file.read()
-            # Find the function content
             function_pattern = re.compile(r'(def\s+on_question_received\s*\([^)]*\):(?:(?!\ndef\s+).)*)', re.DOTALL)
             match = function_pattern.search(content)
             if match:
@@ -96,7 +94,6 @@ def save_function():
         with open('python/integration.py', 'r', encoding='utf-8') as file:
             content = file.read()
         
-        # Update instructions in the file
         pattern = r'(instructions\s*=\s*)["\'].*?["\']'
         updated_content = re.sub(pattern, f'\\1"{new_instructions}"', content)
         
