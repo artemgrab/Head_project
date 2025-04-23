@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Promt{% endblock %}
+
+{% block content %}
+<main class="lab-pe">
+  <div class="layout-container">
+    <h1>Promt-engineering</h1>
+    <div class="lab-grid">
+        <div class="lab-lf">
+            <div class="editor-wrapper">
+                <div id="editor"></div>
+                <button id="saveButton">Зберегти зміни</button>
+                <button id="scriptToggle">Увімкнути</button>
+            </div>
+        </div>
+        <div class="lab-rg">
+            <p>Promt-engineering - це процес оптимізації запитів до мовних моделей, таких як GPT, для отримання більш точних і корисних відповідей. Це важливий аспект роботи з штучним інтелектом, оскільки правильна формулювання запиту може суттєво вплинути на якість відповіді.</p>
+            <p>У цьому розділі ви зможете протестувати запити до мовної моделі.</p>
+        </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+<script src="{{url_for('static', filename='JS/script.js')}}"></script>
+<style>
+    .readonly-background {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        border-radius: 20px;
+        color: white;
+        z-index: 1000;
+    }
+
+    #editor {
+        width: 600px;
+    }
+
+    .notification.success {
+        background-color: #4CAF50;
+    }
+    
+    .notification.error {
+        background-color: #f44336;
+    }
+
+    .CodeMirror {
+        height: 220px;
+        border: none;
+        font-size: 18px;
+        padding: 10px;
+        background-color: #ffffff;
+    }
+
+    .cm-s-default .cm-string {
+        color: #6290C8;
+    }
+
+    .cm-s-default .cm-keyword {
+        color: #376996;
+        font-weight: bold;
+    }
+
+    .cm-s-default .cm-def {
+        color: #376996;
+        font-weight: bold;
+    }
+
+    .cm-s-default .cm-variable {
+        color: #376996;
+    }
+
+    .cm-s-default .cm-operator {
+        color: #6290C8;
+    }
+
+    .cm-s-default .cm-comment {
+        color: #6290C8;
+        font-style: italic;
+    }
+
+    .cm-s-default .cm-number {
+        color: #376996;
+    }
+
+    .cm-s-default .cm-property {
+        color: #376996;
+    }
+
+    .cm-s-default .cm-atom,
+    .cm-s-default .cm-builtin,
+    .cm-s-default .cm-qualifier,
+    .cm-s-default .cm-attribute,
+    .cm-s-default .cm-meta,
+    .cm-s-default .cm-bracket,
+    .cm-s-default .cm-tag,
+    .cm-s-default .cm-header {
+        color: #376996;
+    }
+</style>
+{% endblock %}

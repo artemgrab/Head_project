@@ -5,37 +5,44 @@ Q&A
 {% endblock %}
 
 {% block content %}
-    <main>
+    <main class="qa-main">
         <div class="layout-container">
             <h1 class="qa-h1">Q&A</h1>
             <ol>
                 <li class="accordion-i">
                     <div class="accordion-above">
-                        <p>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur?</p>
+                        <p>Що таке точки інтеграції?</p>
                         <img src="{{url_for('static', filename='img/arrow-list.png')}}" alt="">
                     </div>
-                    <div class="accordion-t qa-hide"><p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p></div>
+                    <div class="accordion-t qa-hide"><p>Точки інтеграції — це спеціальні місця у фреймворку, де учень може додати свій код. Це прості Python-функції, які можна змінити прямо через сайт.</p></div>
                 </li>
                 <li class="accordion-i">
                     <div class="accordion-above">
-                        <p>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur?</p>
+                        <p>Чи можу я писати власні алгоритми?</p>
                         <img src="{{url_for('static', filename='img/arrow-list.png')}}" alt="">
                     </div>
-                    <div class="accordion-t qa-hide"><p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p></div>
+                    <div class="accordion-t qa-hide"><p>Так! Ви можете реалізувати власний код обробки зображення, звуку або генерації відповідей — і одразу бачити результат на пристрої.</p></div>
                 </li>
                 <li class="accordion-i">
                     <div class="accordion-above">
-                        <p>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur?</p>
+                        <p>Чи потрібні додаткові знання програмування?</p>
                         <img src="{{url_for('static', filename='img/arrow-list.png')}}" alt="">
                     </div>
-                    <div class="accordion-t qa-hide"><p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p></div>
+                    <div class="accordion-t qa-hide"><p>Ні, фреймворк розроблено так, щоб навіть новачки могли з ним працювати. Для початку вистачить базових знань Python.</p></div>
                 </li>
                 <li class="accordion-i">
                     <div class="accordion-above">
-                        <p>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur?</p>
+                        <p>Які технології використовуються?</p>
                         <img src="{{url_for('static', filename='img/arrow-list.png')}}" alt="">
                     </div>
-                    <div class="accordion-t qa-hide"><p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p></div>
+                    <div class="accordion-t qa-hide"><p>Фреймворк побудований на Python з використанням OpenCV, Whisper, ChatGPT API. Все працює на Raspberry Pi 3B.</p></div>
+                </li>
+                <li class="accordion-i">
+                    <div class="accordion-above">
+                        <p>Чи можна використовувати інші моделі?</p>
+                        <img src="{{url_for('static', filename='img/arrow-list.png')}}" alt="">
+                    </div>
+                    <div class="accordion-t qa-hide"><p>Так, за бажанням ви можете підключити інші бібліотеки або замінити моделі, які використовуються у фреймворку.</p></div>
                 </li>
             </ol>
         </div>

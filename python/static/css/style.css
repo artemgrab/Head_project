@@ -14,7 +14,8 @@ body {
 }
 
 .layout-container {
-    margin: 0 120px;
+    max-width: 1357px;
+    margin: 0 auto;
 }
 
 a {
@@ -47,16 +48,29 @@ header > .layout-container > nav > ul {
     align-items: center;  
 }
 
-header > .layout-container > nav > ul > li > a {
-    transition: font-size 0.3s ease, color 0.3s ease;
+nav ul li a {
+    position: relative;
+    transition: color 0.3s ease;
+    color: #6290C8;
 }
 
-header > .layout-container > nav > ul > li > a:hover {
-    font-size: 20.5px; 
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #6290C8;
+    transition: width 0.3s ease;
 }
- 
-nav > ul > li > a {
-     color: #6290C8;
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: #6290C8;
 }
 
 h1 {
@@ -77,15 +91,22 @@ h1 {
 .wel-links {
     display: flex;
     align-items: center;
+    gap: 33px;
 }
 
-.wel-links > a > img {
-    transition: font-size 0.3s ease, color 0.3s ease;
+.foot-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.wel-links a img, .foot-links > a > img {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.wel-links > a > img:hover {
+.wel-links a img:hover, .foot-links > a > img:hover {
     transform: scale(1.03);
 }
+
 
 .rg-wel {
     margin-left: auto;
@@ -121,7 +142,6 @@ h1 {
 .adv > h3 {
     font-size: 30px;
     font-weight: bold;
-    /* max-width: 230px; */
     color: #FFFFFF;
 }
 
@@ -182,7 +202,10 @@ h1 {
     font-size: 30px;
     background-color: #FFFFFF;
     border-radius: 87px;
-    transition: color 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    transform: translateY(0);
+    border: 2px solid #FFFFFF;
 }
 
 .str:hover {
@@ -197,7 +220,9 @@ h1 {
     padding: 11px 85px;
     border-radius: 87px;
     border: 2px solid #FFFFFF;
-    transition: color 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    transform: translateY(0);
 }
 
 .rec:hover {
@@ -240,12 +265,19 @@ h1 {
 }
 
 .bottom-footer {
-    margin-top: 136px;
+    margin-top: 51px;
     padding-bottom: 69px;
 }
 
 .bottom-footer > ul > li > a {
     color: #6290C8;
+    display: inline-block;
+    position: relative;
+}
+
+.bottom-footer > ul > li > a:hover {
+    color: #6290C8;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .frame-h1 {
@@ -275,14 +307,25 @@ h1 {
     padding: 14px 40px;
     border-radius: 87px;
     background-color: #376996;
-    transition: background-color 0.3s ease color 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    transform: translateY(0);
+    border: 2px solid #376996;
+
 }
 
 .lab > .rg-bl > a:hover {
+    background-color: #fff;
     color: #376996;
-    background-color: #FFFFFF;
     border: 2px solid #376996;
 }
+
+
+.foot-links > a > img {
+    width: 37px;
+    height: 36px;
+}
+
 
 .lab-up {
     margin-top: 184px;
@@ -290,6 +333,8 @@ h1 {
 
 .p-lab {
     margin-bottom: 40px;
+    max-width: 635px;
+    width: 635px;
 }
 
 .lab-last-bl {
@@ -303,12 +348,18 @@ h1 {
 .bottom-footer > ul > li > a{
     transition: color 0.3s ease;
 }
-.top-footer > ul > li > a:hover{
-    font-size: 20.3px;
+
+
+.top-footer  > ul > li > a {
+    color: #6290C8;
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
 }
 
-.top-footer > ul > li > a{
-    transition: font-size 0.3s ease, color 0.3s ease;
+.top-footer  > ul > li > a:hover {
+    color: #376996;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .bottom-footer > ul li:not(:first-child):hover {
@@ -316,14 +367,18 @@ h1 {
     text-decoration-color: #376996;
 }
 
-
-
 .accordion-i {
     border: 2px solid #376996;
     padding: 19px 0 19px 68px;
-    border-radius: 57px;
+    border-radius: 20px;
     max-width: 983px;
     margin: 33px auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-i:hover {
+    transform: translateY(-2px);
+    /* box-shadow: 0 4px 8px rgba(55, 105, 150, 0.2); */
 }
 
 .accordion-above {
@@ -341,8 +396,11 @@ h1 {
     display: inline-block;
 }
 
+.qa-main {
+    margin-bottom: 195px;
+}
+
 ol {
-    
     counter-reset: my-counter;
     padding-left: 20px;
 }
@@ -367,14 +425,15 @@ ol > li::before {
 }
 
 .accordion-above > img {
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     margin-right: 19px;
 }
 
 .accordion-t {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
     cursor: pointer; 
 }
 
@@ -382,6 +441,7 @@ ol > li::before {
     max-height: 500px; 
     padding-top: 10px;
     max-width: 800px;
+    opacity: 1;
 }
 
 .accordion-i.active .accordion-above img {
@@ -392,20 +452,12 @@ ol > li::before {
     margin: 0 auto;
     max-width: 100px;
     margin-top: 103px;
-    padding-bottom: 23px;
 }
 
 .qa-foot {
     margin-top: 100px;
 }
 
-.test-container {
-    min-height: calc(100vh - 300px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-}
 
 .button-wrapper {
     text-align: center;
@@ -428,3 +480,50 @@ ol > li::before {
 }
 
 
+
+/* promt */
+
+.lab-pe {
+    margin-bottom: 154px;
+}
+
+.lab-pe > .layout-container > h1 {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 85px;
+}
+
+.lab-rg > p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.lab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+    margin-top: 48px;
+}
+
+.editor-wrapper > button {
+    color: #376996;
+    padding: 14px 40px;
+    border-radius: 87px;
+    background-color: #fff;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    transform: translateY(0);
+    border: 2px solid #376996;
+    margin-top: 5px;
+}
+
+.editor-wrapper > button:hover {
+    background-color: #376996;
+    color: #fff;
+    border: 2px solid #376996;
+    cursor: pointer;
+}
+
+#scriptToggle {
+    margin-left: 10px;
+}
